@@ -1,0 +1,107 @@
+<!--pages/clientdetail/clientdetail.wxml-->
+<view class="page">
+    <navigation-bar naviBarType="normal" showLeftIcon="true" leftButtonIcon="back2" maintitle="{{main_title}}" subtitle="{{sub_title}}" default-data="{{defaultData}}" bind:onNavLeftButtonTap="onBackToHome"></navigation-bar>
+    <view class="client_detail_view" scroll-y style="position:relative;margin-top: {{contentTop}}px;width: 100%;height: {{contentHeight+120}}px;overflow: hidden;">
+        <view class="speedview" style="height: {{speedViewHeight}}px;">
+            <ec-canvas type="2d" force-use-old-canvas="true" id="myechart_line" canvas-id="myechart_line" ec="{{ec_line}}"></ec-canvas>
+        </view>
+        <!-- <view class="speedview" style="height: {{speedViewHeight}}px;">
+            <ec-canvas type="2d" force-use-old-canvas="true" id="myechart_bar" canvas-id="myechart_bar" ec="{{ec_bar}}"></ec-canvas>
+        </view> -->
+        <view class="transInfoView">
+            <view class="myItemCellView">
+                <view class="myItem_value">{{trackers}}</view>
+                <view class="myItem_name">{{is_tr?'总数':'Tracker'}}</view>
+            </view>
+            <view class="myItemCellView">
+                <view class="myItem_value">{{torrents}}</view>
+                <view class="myItem_name">{{is_tr?'活动':'种子'}}</view>
+            </view>
+            <view class="myItemCellView">
+                <view class="myItem_value">{{categories}}</view>
+                <view class="myItem_name">{{is_tr?'暂停':'分类'}}</view>
+            </view>
+            <view class="myItemCellView">
+                <view class="myItem_value">{{is_tr?'-':dht}}</view>
+                <view class="myItem_name">DHT</view>
+            </view>
+        </view>
+        <view wx:if="{{!is_tr}}" class="transInfoView">
+            <view class="myItemCellView">
+                <view class="myItem_value">{{maindata.server_state.connection_status}}</view>
+                <view class="myItem_name">连接状态</view>
+            </view>
+            <view class="myItemCellView">
+                <view class="myItem_value">{{maindata.server_state.total_buffers_size}}</view>
+                <view class="myItem_name">总缓冲</view>
+            </view>
+            <view class="myItemCellView">
+                <view class="myItem_value">{{maindata.server_state.total_wasted_session}}</view>
+                <view class="myItem_name">已丢弃</view>
+            </view>
+            <view class="myItemCellView">
+                <view class="myItem_value">{{maindata.server_state.read_cache_hits}}</view>
+                <view class="myItem_name">缓存hits</view>
+            </view>
+        </view>
+
+        <view class="transInfoView">
+            <view class="myItemCellView">
+                <view class="myItem_value">{{is_tr?tr_dl_rate_limit:maindata.server_state.dl_rate_limit}}</view>
+                <view class="myItem_name">下载限速</view>
+            </view>
+            <view class="myItemCellView">
+                <view class="myItem_value">{{is_tr?tr_up_rate_limit:maindata.server_state.up_rate_limit}}</view>
+                <view class="myItem_name">上传限速</view>
+            </view>
+            <view class="myItemCellView">
+                <view class="myItem_value">{{is_tr?tr_queue_time+'min':maindata.server_state.average_time_queue}}</view>
+                <view class="myItem_name">队列时长</view>
+            </view>
+            <view class="myItemCellView">
+                <view class="myItem_value">{{is_tr?tr_cache_size:maindata.server_state.total_queued_size}}</view>
+                <view class="myItem_name">{{is_tr?'缓存大小':'队列大小'}}</view>
+            </view>
+        </view>
+        <view class="use_view">
+            <view wx:if="{{!is_tr}}" class="use_view_top">
+                <!-- 读取缓存负荷 -->
+                <view class="use_view_item my_process">
+                    <view class="use_view_name">读取缓存负荷:{{is_tr?'-':maindata.server_state.read_cache_overload}}%</view>
+                    <progress class="my_process" percent="{{maindata.server_state.read_cache_overload}}" activeColor="{{process_active_color}}" backgroundColor="{{process_bg_color}}" stroke-width="20" active-mode="forwards" active="true" />
+                </view>
+                <!-- 写入缓存符合 -->
+                <view class="use_view_item my_process">
+                    <view class="use_view_name">写入缓存负荷:{{is_tr?'-':maindata.server_state.write_cache_overload}}%</view>
+                    <progress class="my_process" percent="{{maindata.server_state.write_cache_overload}}" activeColor="{{process_active_color}}" backgroundColor="{{process_bg_color}}" stroke-width="20" active-mode="forwards" active="true" />
+                </view>
+            </view>
+            <!-- 当前分享率 -->
+            <view class="use_view_item">
+                <view class="use_view_name">当前下载:{{is_tr?tr_current_dl_data:maindata.server_state.dl_info_data_text}},当前上传{{is_tr?tr_current_ul_data:maindata.server_state.up_info_data_text}},当前分享率:{{is_tr?tr_current_ratio:maindata.server_state.current_ratio}}</view>
+                <progress class="my_process" percent="{{is_tr?tr_current_ratio:maindata.server_state.current_ratio}}" activeColor="#CC6666" backgroundColor="{{maindata.server_state.up_info_data==0?'gray':process_active_color}}" stroke-width="20" active-mode="forwards" active="true" />
+            </view>
+            <!-- 总分享率 -->
+            <view class="use_view_item">
+                <view class="use_view_name">总下载:{{is_tr?tr_total_dl_data:maindata.server_state.alltime_dl_text}},总上传{{is_tr?tr_total_ul_data:maindata.server_state.alltime_ul_text}},总分享率:{{is_tr?tr_global_ratio:maindata.server_state.global_ratio}}</view>
+                <progress class="my_process" percent="{{is_tr?tr_total_down_ratio:maindata.server_state.down_ratio}}" activeColor="#CC6666" backgroundColor="{{maindata.server_state.alltime_ul==0?'gray':process_active_color}}" stroke-width="20" active-mode="forwards" active="true" />
+            </view>
+            <!-- 磁盘空间占用 -->
+            <view class="use_view_item">
+                <view class="use_view_name">磁盘占用:{{is_tr?'-':maindata.server_state.dick_used}}%,已用:{{is_tr?'-':maindata.server_state.used_spece_on_disk}},可用:{{is_tr?tr_free_space:maindata.server_state.free_space_on_disk}}</view>
+                <progress class="my_process" percent="{{maindata.server_state.dick_used}}" activeColor="{{process_active_color}}" backgroundColor="{{process_bg_color}}" stroke-width="20" active-mode="forwards" active="true" />
+            </view>
+        </view>
+        <mp-cell value="启用限速">
+            <view slot="footer">
+                <switch color="{{switch_color}}" bindchange="onSpeedToggleSwitch" checked="{{is_tr?tr_alt_speed_enabled:maindata.server_state.use_alt_speed_limits}}"></switch>
+            </view>
+        </mp-cell>
+        <mp-cell value="启用队列">
+            <view slot="footer">
+                <switch color="{{switch_color}}" bindchange="onQueueToggleSwitch" checked="{{is_tr?tr_queue_state:maindata.server_state.queueing}}"></switch>
+            </view>
+        </mp-cell>
+        <mp-cell value="详细设置" bindtap="gotoSetting" link></mp-cell>
+    </view>
+</view>

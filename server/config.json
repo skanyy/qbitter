@@ -1,0 +1,441 @@
+{
+    "auto_sign_enable": true,
+    "aes_key": "xxxxxxxxxxxxxxxx",
+    "mysql": {
+        "host": "localhost",
+        "port": 3306,
+        "user": "root",
+        "password": "xxxxxxx",
+        "database": "qbitter",
+        "charset": "utf8"
+    },
+    "wxconfig": {
+        "url": "https://api.weixin.qq.com/sns/jscode2session",
+        "params": {
+            "appid": "",
+            "secret": "",
+            "grant_type": "authorization_code"
+        }
+    },
+    "aboutme": {
+        "images": [],
+        "info": "<b>Qbiter</b>是用于管理PT下载工具的微信小程序(支持ipv6)，目前支持qb和tr，它让你可以方便快捷的管理你的下载终端。任何建议都可以给我发邮件sevenminiapp@126.com或加入官方qq群450278795"
+    },
+    "help": {
+        "images": [
+            "./static/qbtip.jpg",
+            "./static/trtip.jpg",
+            "./static/dashang.jpg",
+            "./static/qun.jpg"
+        ],
+        "info": "从2023年1月1日起，仅支持以下方式开通自动签到功能:方式一通过签到积分换取：每个站点消耗 100积分/月；方式二通过打赏换取：每个站点 3.5元/月。开通功能请务必告知群管理员。<br>官方QQ群:450278795<br><br>若无法连接，请确保：<br>1、qb地址最后不要加斜杠(/);<br>2、登录失败提示Not found的时候请把qb换一个端口再试试；<br>3、登录失败提示“不可接受的文件类型...”，请检查是否使用了备用webui，请先切换到原版；<br>4、自动签到功能请入群了解；其它情况则请参考以下设置。 "
+    },
+    "adinfo":{
+        "images":[
+            "./static/dashang.jpg"
+        ],
+        "info":"<b>5元/月，28元/半年，55元/年，199元/永久</b><br>打赏后可关闭所有广告,重新进入小程序后生效。功能开通请务必联系群管理员(QQ群:450278795)"
+    },
+    "share": {
+        "image": "./static/share.png",
+        "title": "Qbiter",
+        "desc": "BT移动管理"
+    },
+    "notice":{
+        "url": "https://api.day.app/xxxxxxxxxxxxxxxxxxx/",
+        "icon":"https://api.qbiter.cc:8885/static/icon.png",
+        "sound":"calypso"
+    },
+    "supportsites": [
+        {
+            "name": "1PTBar",
+            "host": "https://1ptba.com",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "52PT",
+            "host": "https://52pt.site",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "铂金学院",
+            "host": "https://ptchina.org",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "CHDBits",
+            "host": "https://chdbits.co",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": false,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "DiscFan",
+            "host": "https://discfan.net",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "TorrentCCF",
+            "host": "https://et8.org",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "HDAI",
+            "host": "https://www.hd.ai",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "unsupport"
+        },
+        {
+            "name": "HDATMOS",
+            "host": "https://hdatmos.club",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "HDChina",
+            "host": "https://hdchina.org",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "HDCity",
+            "host": "https://hdcity.city",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "HDFans",
+            "host": "https://hdfans.org",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "HDHOME",
+            "host": "https://hdhome.org",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "HDSky",
+            "host": "https://hdsky.me",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign":"/attendance.php"
+        },
+        {
+            "name": "HDTime",
+            "host": "https://hdtime.org",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "HDZone",
+            "host": "https://hdzone.me",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "海棠PT",
+            "host": "https://www.htpt.cc",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "蝴蝶-HUDBT",
+            "host": "https://hudbt.hust.edu.cn",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "JoyHD",
+            "host": "https://www.joyhd.net",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "南洋PT",
+            "host": "https://nanyangpt.com",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "NicePT",
+            "host": "https://www.nicept.net",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "OpenCD",
+            "host": "https://open.cd",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "OurBits",
+            "host": "https://ourbits.club",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "BTSCHOOL",
+            "host": "https://pt.btschool.club",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "TLFBits",
+            "host": "https://pt.eastgame.org",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "HD4FANS",
+            "host": "https://pt.hd4fans.org",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "HDU",
+            "host": "https://pt.hdupt.com",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "PT@KEEPFRDS",
+            "host": "https://pt.keepfrds.com",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "PTMSG",
+            "host": "https://pt.msg.vg",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "葡萄",
+            "host": "https://pt.sjtu.edu.cn",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "聆音Club",
+            "host": "https://pt.soulvoice.club",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "溪涧草堂PT",
+            "host": "http://pt.xauat6.edu.cn",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "PTer",
+            "host": "https://pterclub.com",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "烧包",
+            "host": "https://ptsbao.club",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "北洋园",
+            "host": "https://tjupt.org",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "UltraHD",
+            "host": "https://ultrahd.net",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "备胎",
+            "host": "https://www.beitai.pt",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "unsupport"
+        },
+        {
+            "name": "HaiDan",
+            "host": "https://www.haidan.video",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        },
+        {
+            "name": "HDArea",
+            "host": "https://www.hdarea.co",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/sign_in.php?action=sign_in"
+        },
+        {
+            "name": "PTTIME",
+            "host": "https://www.pttime.org",
+            "login": "/login.php",
+            "takelogin": "/takelogin.php",
+            "needcode": true,
+            "forums":"/forums.php",
+            "torrent": "/torrents.php",
+            "sign": "/attendance.php"
+        }
+    ]
+}

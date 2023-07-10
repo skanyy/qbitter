@@ -1,0 +1,38 @@
+<!--pages/clientlist/clients.wxml-->
+<view class="page">
+    <navigation-bar naviBarType="normal" showLeftIcon="true" leftButtonIcon="add" maintitle="{{main_title}}" subtitle="{{sub_title}}" default-data="{{defaultData}}" bind:onNavLeftButtonTap="onAddServerEvent"></navigation-bar>
+    <view style="position: fixed;margin-top: {{contentTop}}px;width: 100%;">
+        <view wx:if="{{list&&list.length>0}}">
+            <scroll-view scroll-y enable-back-to-top="true" style="width: 100%;height:{{contentHeight}}px;" refresher-enabled="{{true}}" refresher-threshold="{{300}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="onRefresh" enable-back-to-top="{{true}}" scroll-with-animation="{{true}}">
+                <view wx:for="{{list}}" wx:key="filter">
+                    <view style="display: flex;flex-direction: row;">
+                        <view class="weui-panel left_view" bindtap="gotoTorrentsDetail" data-item="{{item}}" bindlongpress="onLongPress">
+                            <view class="weui-panel__bd">
+                                <view class="weui-media-box weui-media-box_text">
+                                    <view class="panel_main_title client_list_title">{{item.name}}</view>
+                                    <!-- <view class="weui-media-box__desc">{{item.host}}</view> -->
+                                    <view class="weui-media-box__desc">{{item.type}}</view>
+                                    <view class="weui-media-box__info">
+                                        <view class="weui-media-box__info__meta">
+                                            <image wx:if="{{item.innerhost}}" class="client_state_icon" src="../../icons/local.svg"></image>
+                                        </view>
+                                        <view class="weui-media-box__info__meta">
+                                            <image wx:if="{{item.outerhost}}" class="client_state_icon" src="../../icons/remote.svg"></image>
+                                        </view>
+                                        <!-- <view class="weui-media-box__info__meta">{{item.type}}</view> -->
+                                        <view wx:if="{{item.isdefault}}" class="weui-media-box__info__meta weui-media-box__info__meta_extra">默认</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="clients_right_view" bindtap="gotoClientDetail" data-item="{{item}}">
+                            <image class="right_icon" src="../../icons/status.svg"></image>
+                            <!-- <mp-icon icon="info" color="#13b2ae88" size="30"></mp-icon> -->
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+        <view wx:else class="empty_content" bindtap="onAddServerEvent" style="height: {{contentHeight}}px;">+添加客户端</view>
+    </view>
+</view>

@@ -1,0 +1,17 @@
+<!--pages/signlog/signlog.wxml-->
+<view class="page">
+    <navigation-bar naviBarType="normal" maintitle="积分" showLeftIcon="true" leftButtonIcon="back2" bind:onNavLeftButtonTap="onBack"></navigation-bar>
+    <view style="position: fixed;margin-top: {{contentTop}}px;width: 100%;">
+        <scroll-view scroll-y enable-back-to-top="true" style="width: 100%;height:{{contentHeight}}px;" refresher-enabled="{{true}}" refresher-threshold="{{300}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="onGetSignHistory" enable-back-to-top="{{true}}" scroll-with-animation="{{true}}">
+            <view class="calendar_container">
+                <calendar daysColor="{{daysColor}}" weeksType="cn" bindnextMonth='nextMonth' bindprevMonth='prevMonth' binddateChange='dateChange' cellSize="36" />
+            </view>
+            <view class="signlog_view">
+                <view class="signlog_info">{{info}}</view>
+                <button class="weui-btn" bindtap="onSignIn" >{{btn_text}}</button>
+            </view>
+        </scroll-view>
+
+    </view>
+    <ad style="position: fixed;bottom: 0;" unit-id="adunit-066071b9b8c8e3d8" ad-intervals="30"></ad>
+</view>

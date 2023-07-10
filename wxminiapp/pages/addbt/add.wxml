@@ -1,0 +1,26 @@
+<!--pages/add/add.wxml-->
+<view class="page">
+    <navigation-bar naviBarType='normal' showLeftIcon="true" leftButtonIcon="back2" maintitle="新建下载" bind:onNavLeftButtonTap="onNaviBack"></navigation-bar>
+    <scroll-view scroll-y style="width: 100%; height: {{contentHeight}}px;margin-top: {{contentTop}}px;" enable-back-to-top="{{true}}" scroll-with-animation="{{true}}">
+        <ad-custom unit-id="adunit-7dd12cb0e43925f3"></ad-custom>
+        <view wx:for="{{itemList}}" wx:if="{{item.show}}" wx:key="id">
+            <view hover-class="myItemHover" class="myItem">
+                <block wx:if="{{item.switch}}">
+                    <mp-cell value="{{item.name}}">
+                        <view class="footer" slot="footer">
+                            <switch color="#13b2ae" bindchange="onSwitch" data-item="{{item.key}}" checked="{{item.value}}"></switch>
+                        </view>
+                    </mp-cell>
+                </block>
+                <block wx:else>
+                    <mp-cell link="{{!item.switch}}" bindtap="onCellTap" data-item="{{item}}" value="{{item.name}}">
+                        <view class="footer" slot="footer" style="{{item.button?'display: none;':''}}">{{item.value}}</view>
+                    </mp-cell>
+                </block>
+            </view>
+        </view>
+        <view style="height: 25px;"></view>
+        <button class="weui-btn" bindtap="formSubmit">确定</button>
+        <view style="height: 55px;"></view>
+    </scroll-view>
+</view>

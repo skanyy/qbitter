@@ -1,0 +1,58 @@
+/* components/navigation-bar.wxss */
+.nav-bar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    color: #fff;
+    background-color: #13b2ae;
+}
+
+.leftButtons {
+    position: absolute;
+    /* background-color: rgba(0, 0, 0, .15); */
+    /* border: 1px solid rgba(255, 255, 255, .25); */
+    border-radius: 46px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* 均匀分布 */
+    flex-wrap: nowrap;
+    /* padding-left: 10px; */
+}
+
+.innerIcon {
+    /* 均匀分布 */
+    flex-grow: 1;
+}
+
+/* .middleline {
+    flex-grow: 1;
+    margin: 0px 2px;
+    width: 1px;
+    height: 15px;
+    background-color: rgba(255, 255, 255, .7);
+} */
+
+/* .title {
+    position: absolute;
+    text-align: center;
+} */
+.icon_search{
+    position:absolute;
+    padding:6px 2px 2px 6px;
+} 
+.search_input{
+    padding-left: 30px;
+    border-radius: 15px;
+    background-color: #eee;
+    color: black;
+}
+
+@media(prefers-color-scheme:dark){
+    .search_input,
+    .nav_search_container,
+    .nav-bar{
+        color: #999;
+        background-color: #222;
+    }
+}

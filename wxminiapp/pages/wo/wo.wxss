@@ -1,0 +1,47 @@
+/* pages/setting/setting.wxss */
+.userInfo {
+    margin-top: 50px;
+    margin-left: 25px;
+    display: flex;
+    flex-direction: row;
+}
+
+.user-text {
+    color: white;
+    margin-top: 8px;
+    margin-left: 15px;
+}
+
+.userinfo-avatar {
+    overflow: hidden;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: solid 1px lightgray;
+}
+
+.userinfo-tip {
+    font-size: 12px;
+    color: yellow;
+}
+
+.myformcontainer {
+    padding: 15px;
+}
+
+.myItem {
+    height: 80px;
+    background-color: white;
+    margin: 15px;
+    border-radius: 15px;
+}
+
+.myItemHover {
+    background-color: rgb(250, 250, 250);
+}
+
+scroll-view {
+    background-color:rgb(240, 240, 240);
+}
+
+@import '/app.wxss'

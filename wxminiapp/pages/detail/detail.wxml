@@ -1,0 +1,92 @@
+<!--pages/detail/detail.wxml-->
+<navigation-bar style="position: flex;" naviBarType='normal' maintitle="详情" showLeftIcon="true" leftButtonIcon="back2" bind:onNavLeftButtonTap="onNaviBack"></navigation-bar>
+<view style="position: fixed;margin-top: {{contentTop}}px;width: 100%;height: {{contentHeight}}px; ">
+    <mp-tabs tab-class="tab-class" tabs="{{tabs}}" activeTab="{{activeTab}}" swiperStyle="height:{{contentHeight}}px" bindchange="onTabChange" activeClass="tab-bar-title__selected" tab-underline-color="#13b2ae">
+        <block wx:for="{{tabs}}" wx:key="title">
+            <view class="tab-content" data-set="{{item}}" slot="tab-content-{{index}}">
+                <scroll-view scroll-top="{{scroll_top}}" scroll-y="true" style="height:{{contentHeight}}px;" refresher-enabled="{{true}}" refresher-threshold="{{300}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="onRefresh" bindscrolltolower="onLoadmore" lower-threshold="400" enable-back-to-top="{{true}}" scroll-with-animation="{{true}}">
+                    <!-- 搜索文件 -->
+                    <view wx:if="{{activeTab>=2}}" class="search_input_container">
+                        <icon style="position:absolute;padding:6px 2px 2px 6px;" size="20" type="search" role="img"></icon>
+                        <input placeholder="搜索当前" class="search_input" bindconfirm="onSearchConfirm" bindinput="onSearchInput" confirm-type="search" />
+                    </view>
+                    <block wx:if="{{listData.length}}">
+                        <!-- 设置 -->
+                        <view wx:if="{{activeTab==0}}" wx:for="{{listData}}" wx:key="id">
+                            <mp-cell hover wx:if="{{!item.hidden}}" data-item="{{item}}" bindtap="onControllCellTap" link="{{!item.switch}}" data-item="{{item}}" value="{{item.name}}">
+                                <view slot="footer">
+                                    <switch color="{{switch_color}}" wx:if="{{item.switch}}" bindchange="onSuperSwitch" data-item="{{item.key}}" checked="{{item.value}}"></switch>
+                                    <view wx:else style="{{item.hideValue?'display: none;':''}}">{{item.value}}</view>
+                                </view>
+                            </mp-cell>
+                        </view>
+                        <!-- 下载信息 -->
+                        <view wx:if="{{activeTab==1}}">
+                            <view wx:for="{{listData}}" wx:key="id">
+                                <mp-cell hover value="{{item.name}}" data-item="{{item}}" bindtap="onInfoCellTap">
+                                    <view slot="footer">{{item.value}}</view>
+                                </mp-cell>
+                            </view>
+                        </view>
+                        <!-- 内容 -->
+                        <view wx:if="{{activeTab==2}}">
+                            <!-- 顶部返回按钮及目录说明 -->
+                            <view style="margin:2px 0px;">
+                                <mp-cell bindtap="gotoPrevPath" icon="/icons/file/return.svg">
+                                    <view style="font-size: 12px;">{{currenttext}}</view>
+                                    <view wx:if="{{currentpath!='/'}}" style="font-size: 10px;color:#1f7769;">{{currentpath}}</view>
+                                    <view style="font-size: 8px;color:gray;">{{total_count_text}}当前{{current_folder>0?current_folder+'个文件夹':''}}{{current_files>0?current_files+'个文件':''}}</view>
+                                </mp-cell>
+                            </view>
+                            <!-- 列表数据 -->
+                            <view wx:for="{{listData}}" wx:key="id">
+                                <view style="margin-bottom: 1px;" class="weui-panel weui-panel__bd" bindtap="gotoNextPath" data-item="{{item}}" bindlongpress="onFileLongPress">
+                                    <mp-cell icon="{{item.icon}}">{{item.key?item.key:"根目录"}}</mp-cell>
+                                    <view class="bottom_info_view">
+                                        <view class="weui-media-box__info">
+                                            <view class="weui-media-box__info__meta">{{item.progresstxt}}</view>
+                                            <view class="weui-media-box__info__meta">大小:{{item.size}}</view>
+                                            <view class="weui-media-box__info__meta">{{item.is_seed?'做种':''}}</view>
+                                            <view class="weui-media-box__info__meta" style="{{item.prioritytxt=='不下载'?'color:red':''}}">优先级:{{item.prioritytxt}}</view>
+                                        </view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                        <!-- tracker -->
+                        <view wx:if="{{activeTab==3}}" wx:for="{{listData}}" wx:key="id">
+                            <view class="weui-panel weui-panel__bd" data-item="{{item.url}}" bindtap="onTrackerTap">
+                                <view class="weui-media-box weui-media-box_text">
+                                    <view class="panel_main_title">{{item.url}}</view>
+                                    <view class="weui-media-box__desc">{{item.msg}}</view>
+                                    <view class="weui-media-box__info">
+                                        <view class="weui-media-box__info__meta">状态:{{item.status}}</view>
+                                        <view class="weui-media-box__info__meta">用户:{{item.num_peers}}</view>
+                                        <view class="weui-media-box__info__meta">种子:{{item.num_seeds}}</view>
+                                        <view class="weui-media-box__info__meta">下载{{item.num_downloaded}}</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                        <!-- 用户 -->
+                        <view wx:if="{{activeTab==4}}" wx:for="{{listData}}" wx:key="id">
+                            <mp-cell hover value="{{item.country_code}}:{{item.country}}（{{item.ip}}:{{item.port}}）【{{item.connection}} - {{item.dl_speed}} | {{item.downloaded}}】"></mp-cell>
+                        </view>
+                        <!-- http -->
+                        <view wx:if="{{activeTab==5}}" wx:for="{{listData}}" wx:key="id">
+                            <view class="panel_main_title" data-item="{{item.url}}" bindtap="onHttpTap">
+                                <mp-cell hover value="{{item.url}}"></mp-cell>
+                            </view>
+                        </view>
+                    </block>
+                    <!-- 没有数据 -->
+                    <block wx:else>
+                        <view class="empty_content">无数据</view>
+                    </block>
+                    <!-- 底部留白 -->
+                    <view style="height: 30%;"></view>
+                </scroll-view>
+            </view>
+        </block>
+    </mp-tabs>
+</view>

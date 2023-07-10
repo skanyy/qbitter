@@ -1,0 +1,57 @@
+{
+    "pages": [
+        "pages/clientlist/clients",
+        "pages/search/search",
+        "pages/main/main",
+        "pages/addbt/add",
+        "pages/detail/detail",
+        "pages/qblogin/qblogin",
+        "pages/setting/setting",
+        "pages/input/input",
+        "pages/tags/tags",
+        "pages/wo/wo",
+        "pages/about/about",
+        "pages/clientdetail/clientdetail",
+        "pages/sysset/set",
+        "pages/sitelist/sitelist",
+        "pages/siteconfig/siteconfig",
+        "pages/sitecookie/getcookie",
+        "pages/signlog/signlog"
+    ],
+    "window": {
+        "navigationStyle": "custom"
+    },
+    "tabBar": {
+        "color": "@tabFontColor",
+        "selectedColor": "@tabSelectedColor",
+        "backgroundColor": "@tabBgColor",
+        "list": [
+            {
+                "pagePath": "pages/clientlist/clients",
+                "text": "客户端",
+                "iconPath": "/icons/tabbar/tabbar_home.png",
+                "selectedIconPath": "/icons/tabbar/tabbar_home_selected.png"
+            },
+            {
+                "pagePath": "pages/sitelist/sitelist",
+                "text": "站点",
+                "iconPath": "/icons/tabbar/tabbar_search.png",
+                "selectedIconPath": "/icons/tabbar/tabbar_search_selected.png"
+            },
+            {
+                "pagePath": "pages/wo/wo",
+                "text": "我的",
+                "iconPath": "/icons/tabbar/tabbar_wo.png",
+                "selectedIconPath": "/icons/tabbar/tabbar_wo_selected.png"
+            }
+        ]
+    },
+    "darkmode": true,
+    "themeLocation": "theme.json",
+    "useExtendedLib": {
+        "weui": true
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json",
+    "lazyCodeLoading": "requiredComponents"
+}

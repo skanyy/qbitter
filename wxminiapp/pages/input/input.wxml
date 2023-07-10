@@ -1,0 +1,13 @@
+<!--pages/input/input.wxml-->
+<view class="page">
+    <navigation-bar naviBarType="normal" maintitle="{{pageData.name}}" showLeftIcon="true" leftButtonIcon="back2" bind:onNavLeftButtonTap="onBack"></navigation-bar>
+    <scroll-view scroll-y style="width: 100%; height: {{contentHeight}}px;margin-top: {{contentTop}}px;" enable-back-to-top="{{true}}" scroll-with-animation="{{true}}">
+        <view class="my_input_item">
+            <textarea wx:if="{{pageData.istextarea}}"  class="weui-textarea" placeholder="{{pageData.placeholder}}" bindinput="onInputEvent" value="{{inputvalue}}" maxlength="-1"/>
+            <input wx:else  class="weui-input" placeholder="{{pageData.placeholder}}" bindinput="onInputEvent" value="{{inputvalue}}" type="{{pageData.type}}"></input>
+            <view class="inputDescView">{{pageData.desc}}</view>
+        </view>
+        <button class="weui-btn" bindtap="onSaveInput">确定</button>
+    </scroll-view>
+    <ad style="position: fixed;bottom: 0;" unit-id="adunit-2dcc311799e12a20" ad-intervals="30" ></ad>
+</view>

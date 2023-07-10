@@ -1,0 +1,19 @@
+<!-- 自定义顶部栏 -->
+<view class="nav-bar" style="height:{{navBarHeight}}px;">
+<!-- <view style="font-size: 10px;width: 100%;height: 15px;text-align: center;position: absolute;top:{{statusBarHeight-11}}px;color: yellow;">subtitle</view> -->
+    <view style="height:{{leftViewHeight}}px;width: {{leftViewWidth}}px;bottom: {{menuBottom}}px;position: absolute;left: {{menuRight}}px;">
+        <view style="width: {{leftButtonWidth}}px;height: {{leftButtonHeight}}px;position: absolute;">
+            <mp-icon wx:if="{{showLeftIcon}}" class="innerIcon" icon="{{leftButtonIcon}}" color="white" size="26" bindtap="onLeftButtonTap"></mp-icon>
+        </view>
+        <view style="position: absolute;left:{{leftButtonWidth}}px;height:100%;width:{{leftViewWidth-leftButtonWidth}}px;">
+            <view class="nav_search_container" wx:if="{{includeSearchBar}}">
+                <icon class="icon_search" size="20" type="search" role="img"></icon>
+                <input class="search_input" style="height: {{menuHeight-2}}px;" placeholder="{{searchInputPlaceholder}}" confirm-type="search" bindconfirm="onInputConfirm" bindinput="onInputTyping"/>
+            </view>
+            <view bindtap="onTitleTap" wx:else style="width: 100%;text-align: center;padding-left: {{leftButtonWidth}}px;margin-top:{{subtitle?-5:3}}px;">
+            <view>{{maintitle}}</view>
+            <view style="font-size: 10px;color: yellow;">{{subtitle}}</view>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,16 @@
+<!--pages/about/about.wxml-->
+<view class="page">
+    <navigation-bar naviBarType="normal" showLeftIcon="true" leftButtonIcon="back2" maintitle="{{maintitle}}" bind:onNavLeftButtonTap="onBack"></navigation-bar>
+    <scroll-view scroll-y style="width: 100%; height: {{contentHeight}}px;margin-top: {{contentTop}}px;" refresher-enabled="{{true}}" refresher-threshold="{{300}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="onRefresh" enable-back-to-top="{{true}}" scroll-with-animation="{{true}}" refresher-default-style="{{refresher_style}}">
+        <view class="content_view">
+            <rich-text nodes="{{info}}" user-select="true"></rich-text>
+            <view wx:for="{{imageList}}" wx:key="id">
+                <image style="width:100%;margin-top: 15px;" data-item="{{item}}" src="data:image/jpg;base64,{{item}}" mode="widthFix" bindtap="onImageTap" show-menu-by-longpress="{{true}}"></image>
+            </view>
+            <view class="bottomView">
+                <view class="version">{{qbInfo}}</view>
+                <view class="version">{{apiInfo}}</view>
+            </view>
+        </view>
+    </scroll-view>
+</view>

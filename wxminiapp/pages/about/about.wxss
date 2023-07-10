@@ -1,0 +1,11 @@
+/* pages/about/about.wxss */
+.version {
+    width: 100%;
+    height: 25px;
+    text-align: center;
+    color: gray;
+}
+.bottomView {
+    margin-bottom: 45px;
+}
+

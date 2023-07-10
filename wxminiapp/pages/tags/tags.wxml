@@ -1,0 +1,53 @@
+<!--pages/tags/tags.wxml-->
+<modal id="modal" hidden="{{hiddenmodalput}}" title="{{modal_title}}" confirm-text="保存" cancel-text="取消" bindcancel="onCreateCancel" bindconfirm="onCreateConfirm">
+    <input value="{{nameTextInput}}" placeholder-style="color:#777" style="padding: 5px;margin:5px;" type='text' placeholder="名称" bindinput="onNameTextInput" disabled="{{isedit}}" />
+    <input value="{{savePathInput}}" placeholder-style="color:#777" wx:if="{{viewtype=='category'}}" style="padding: 5px;margin:5px;" type='text' placeholder="保存位置" bindinput="onSavePathTextInput" />
+</modal>
+<navigation-bar naviBarType="normal" showLeftIcon="true" leftButtonIcon="back2" maintitle="{{main_title}}" subtitle="{{sub_title}}" default-data="{{defaultData}}" bind:onNavLeftButtonTap="onNaviBack"></navigation-bar>
+<view style="position: fixed;margin-top: {{contentTop}}px;width: 100%;height: {{contentHeight}}px;">
+    <scroll-view scroll-y="true" style="height:{{contentHeight}}px;" refresher-enabled="{{true}}" refresher-threshold="{{300}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="onRefresh" enable-back-to-top="{{true}}" scroll-with-animation="{{true}}">
+        <block wx:if="{{viewtype=='syslog'||viewtype=='peerlog'}}">
+            <block wx:if="{{itemList.length>0}}">
+                <view wx:for="{{itemList}}" wx:key="id">
+                    <view style="padding: 10px;">
+                        <view class="radio_group_title" style="padding:5px;font-size: 14px;">{{"【"+item.type+"】"+item.message}}</view>
+                        <view class="radio_group_subtitle" style="padding:5px;">{{item.time}}</view>
+                    </view>
+                </view>
+            </block>
+            <block wx:else>
+                <view class="empty_content">没有数据</view>
+            </block>
+        </block>
+
+        <block wx:else>
+            <view wx:if="{{torrent_data}}" class="topTitle">名称：{{torrent_data.name}}</view>
+            <view wx:if="{{viewtype=='category'}}">
+                <radio-group bindchange="onCategoryRadioChange">
+                    <label class="weui-cell weui-check__label" wx:for="{{itemList}}" wx:key="id" data-item="{{item}}" bindlongpress="onCellLongPress">
+                        <view class="weui-cell__hd">
+                            <radio color="{{radio_checkbox_color}}" wx:if="{{torrent_data||fromdownload}}" value="{{item.name}}" checked="{{item.checked}}" />
+                        </view>
+                        <view class="weui-cell__bd">
+                            <view class="radio_group_title">{{item.name}}</view>
+                            <view class="radio_group_subtitle">{{item.savePath}}</view>
+                        </view>
+                    </label>
+                </radio-group>
+            </view>
+            <view wx:if="{{viewtype=='tags'}}">
+                <checkbox-group bindchange="onTagsCheckboxChange" data-item="{{itemList}}">
+                    <label class="weui-cell weui-check__label" wx:for="{{itemList}}" wx:key="key" data-item="{{item}}" bindlongpress="onCellLongPress">
+                        <view class="weui-cell__hd">
+                            <checkbox color="{{radio_checkbox_color}}" wx:if="{{torrent_data||fromdownload}}" value="{{item.name}}" checked="{{item.checked}}" />
+                        </view>
+                        <view class="weui-cell__bd">{{item.name}}</view>
+                    </label>
+                </checkbox-group>
+            </view>
+            <view class="btn-area">
+                <button class="weui-btn" bindtap="onCreateTagOrCategory">新建</button>
+            </view>
+        </block>
+    </scroll-view>
+</view>

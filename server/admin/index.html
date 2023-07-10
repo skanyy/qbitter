@@ -1,0 +1,335 @@
+<!--
+ * @Author: seven
+ * @Date: 2022-10-19 11:19:04
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-01-06 11:30:07
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>有效期设置</title>
+    <link rel="stylesheet" href="./jquery-weui/weui.min.css" />
+    <link rel="stylesheet" href="./jquery-weui/jquery-weui.min.css" />
+    <script src="./jquery-weui/jquery.min.js"></script>
+    <script src="./jquery-weui/jquery-weui.min.js"></script>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+        }
+
+        .infotip {
+            width: 100%;
+            text-align: center;
+            margin-top: 50%;
+        }
+
+        .item {
+            border: 1px solid lightgray;
+            border-radius: 10px;
+            margin: 8px;
+            display: grid;
+            grid-template-columns: 80px 1fr;
+
+        }
+
+        .item:hover {
+            background: lightgray;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-top: 10px;
+            border: 1px solid lightgray;
+        }
+
+        .left {
+            text-align: center;
+            border-right: 1px solid lightgray;
+        }
+        .right{
+            padding: 5px 10px;
+        }
+
+        .site {
+            font-size: 14px;
+            color: #111;
+        }
+
+        .applytime {
+            font-size: 13px;
+            color: rgb(58, 57, 57);
+        }
+
+        .warn {
+            color: red;
+            font-size: 10px;
+        }
+
+        .detail_text {
+            text-align: left;
+        }
+        .point{
+            font-size: 10px;
+        }
+        #detail_point{
+            text-align: center;
+            font-size: 8px;
+        }
+        #date-start{
+            color: white;
+            background-color:orange;
+        }
+        #searchBar{
+            position: fixed;
+            top: 0px;
+            width: 100%;
+        }
+        #mylist{
+            padding-top: 45px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="weui-pull-to-refresh__layer">
+        <div class='weui-pull-to-refresh__arrow'></div>
+        <div class='weui-pull-to-refresh__preloader'></div>
+        <div class="down">下拉刷新</div>
+        <div class="up">释放刷新</div>
+        <div class="refresh">正在刷新</div>
+    </div> -->
+    <div class="weui-search-bar" id="searchBar">
+        <div class="weui-search-bar__form">
+            <div class="weui-search-bar__box">
+                <i class="weui-icon-search"></i>
+                <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" onkeydown="searchSomething()">
+                <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+            </div>
+            <label class="weui-search-bar__label" id="searchText">
+                <i class="weui-icon-search"></i>
+                <span>搜索</span>
+            </label>
+        </div>
+        <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+    </div>
+    <div id="about" class="weui-popup__container popup-bottom">
+        <div class="weui-popup__overlay"></div>
+        <div class="weui-popup__modal">
+            <div class="weui-msg">
+                <div class="weui-msg__text-area">
+                    <div class="weui-panel weui-panel_access">
+                        <div class="weui-panel__bd">
+                            <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                                <div class="weui-media-box__hd">
+                                    <img class="weui-media-box__thumb" src="" id="detail_avatar">
+                                    <p class="weui-media-box__desc detail_text" id="detail_point"></p>
+                                </div>
+                                <div class="weui-media-box__bd">
+                                    <p class="weui-media-box__desc detail_text" id="detail_nickname"></p>
+                                    <p class="weui-media-box__desc detail_text" id="detail_endtime"></p>
+                                    <p class="weui-media-box__desc detail_text" id="detail_sitehost"></p>
+                                    <p class="weui-media-box__desc detail_text" id="detail_applytime"></p>
+                                    <!-- <p class="weui-media-box__desc" id="detail_text"></p> -->
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="weui-msg__opr-area">
+                    <p class="weui-btn-area">
+                        <input type="text" class="weui-btn weui-btn_default" id='date-start' placeholder="修改有效期" />
+                        <a href="javascript:sumbit(1);" class="weui-btn weui-btn_warn">禁用</a>
+                        <a href="javascript:sumbit(0);" class="weui-btn weui-btn_primary">保存</a>
+                        <a href="javascript:$.closePopup();" class="weui-btn weui-btn_default">取消</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="mylist"></div>
+    <script>
+        // $(document.body).pullToRefresh();
+        var currentId = ""
+        var access_token = ""
+        login()
+        function login() {
+            $.login("输入用户名和密码", function (username, password) {
+                var data = {
+                    username: username,
+                    password: password
+                }
+                $.showLoading("登陆中")
+                $.ajax({
+                    url: "/sys/token",
+                    data: data,
+                    type: 'POST',
+                    dataType: 'JSON',
+                    success(res) {
+                        $.hideLoading()
+                        access_token = res.access_token
+                        getList(res.access_token)
+                    },
+                    error() {
+                        $.hideLoading()
+                        access_token = ""
+                        $.alert("登录失败", login)
+                    }
+                })
+            }, function () {
+                console.log("cancel")
+                access_token = ""
+                login()
+            });
+        }
+        // $(document.body).on("pull-to-refresh", function () {
+        //     getList(access_token)
+        // });
+
+        function searchSomething(event){
+            event = event || window.event;
+		    if (event.keyCode == 13) {
+                var input = $("#searchInput").val()
+                getList(access_token,input)
+		    }
+        }
+
+        function getList(access_token,keyword="") {
+            $.showLoading("请稍后..")
+            $.ajax({
+                type: "GET",
+                url: '/sys/list?keyword='+keyword,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", "Bearer " + access_token)
+                },
+                success(result) {
+                    // console.log(result)
+                    $("#mylist").empty()
+                    if (result != "error") {
+                        result = JSON.parse(result)
+                        for (var i = 0; i < result.length; i++) {
+                            var info = result[i]
+                            if (info.status == 0) {
+                                $("#mylist").append(
+                                    "<div class='item' data='" + JSON.stringify(info) + "' id='" + info.id + "'>" +
+                                    "<div class='left'><image class='avatar' src=" + info.avatarurl + "></image>" +
+                                    "<div class='point'>积分:" + info.point+"</div></div>"+
+                                    "<div class='right'>" +
+                                    "<div>" + info.nickname  + "(" + info.customername + ")</div>" +
+                                    "<div class='warn'>待审核</div>" +
+                                    "<div class='site'>" + info.sitehost + "</div>" +
+                                    "<div class='applytime'>" + info.applytime + "</div>" +
+                                    "</div>" +
+                                    "</div>"
+                                )
+                            } else {
+                                var status = "未生效"
+                                if (info.status == '2') {
+                                    status = "永久"
+                                } else if (info.status == '1') {
+                                    var end = new Date(Date.parse(info.endtime))
+                                    if (end < new Date()) {
+                                        status = info.endtime + "(<a class='warn'>过期</a>)"
+                                    } else {
+                                        status = info.endtime
+                                    }
+                                }
+                                $("#mylist").append(
+                                    "<div class='item' data='" + JSON.stringify(info) + "' id='" + info.id + "'>" +
+                                    "<div class='left'><image class='avatar' src=" + info.avatarurl + "></image>" +
+                                    "<div class='point'>积分:" + info.point+"</div></div>"+
+                                    "<div class='right'>" +
+                                    "<div>" + info.nickname + "(" + info.customername + ")</div>" +
+                                    "<div class='applytime'>有效期至:" + status + "</div>" +
+                                    "<div class='site'>" + info.sitehost + "</div>" +
+                                    "<div class='applytime'>" + info.applytime + "</div>" +
+                                    "</div>" +
+                                    "</div>"
+                                )
+                            }
+
+                        }
+                    }
+                    //初始化日历选择控件
+                    $("#date-start").calendar({ dateFormat: 'yyyy-mm-dd' });
+                    //点击某个item
+                    $(".item").bind("click", function (e) {
+                        var item = e.currentTarget
+                        var info = JSON.parse(item.getAttribute("data"))
+                        currentId = info.id
+
+                        $("#date-start").val(info.endtime)
+
+                        var status = "未生效"
+                        if (info.status == '2') {
+                            status = "永久"
+                        } else if (info.status == '1') {
+                            var end = new Date(Date.parse(info.endtime))
+                            if (end < new Date()) {
+                                status = info.endtime + "(过期)"
+                            } else {
+                                status = info.endtime
+                            }
+                        }
+                        $("#detail_point").text("积分:"+info.point)
+                        $("#detail_nickname").text(info.nickname + "(" + info.customername + ")")
+                        $("#detail_endtime").text("有效期至：" + status)
+                        $("#detail_sitehost").text("站点：" + info.sitehost)
+                        $("#detail_applytime").text("提交时间：" + info.applytime)
+                        $("#detail_avatar").attr("src", info.avatarurl)
+                        $("#about").popup();
+                    })
+                }, error(xhr, status, error) {
+                    $.alert("请求失败:" + error)
+                }, complete(res) {
+                    $.hideLoading()
+                    // $(document.body).pullToRefreshDone()
+                }
+            })
+        }
+        function sumbit(disabled) {
+            $.showLoading("提交中..")
+            var userId = currentId
+            //1禁用；0保存
+            var action = disabled
+            var time = $("#date-start").val()
+            $.ajax({
+                type: "GET",
+                url: '/sys/update?id=' + userId + '&action=' + action + '&settime=' + time,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", "Bearer " + access_token)
+                },
+                success(result) {
+                    $.hideLoading()
+                    console.log(result)
+                    if (result != "error") {
+                        $.toast("操作成功")
+                        getList(access_token)
+                    } else {
+                        $.alert("设置失败")
+                    }
+                },
+                error() {
+                    $.hideLoading()
+                    $.alert("设置失败")
+                },
+                complete() {
+                    $.closePopup()
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

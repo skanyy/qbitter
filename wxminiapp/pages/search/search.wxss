@@ -1,0 +1,21 @@
+.weui-media-box__desc{
+    font-size: 12px;
+}
+
+
+.my_checkbox_title,
+.my_checkbox_subtitle{
+    padding-left:10px;
+}
+.my_checkbox_subtitle{
+    color: #555;
+    font-size: 12px;
+}
+
+.site_meta_score{
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    padding-bottom: 3px;
+    margin-right: 2px;
+}

@@ -1,0 +1,49 @@
+.weui-tabs {
+    width: 100%;
+}
+
+.weui-tabs-bar__wrp {
+    width: 100%;
+}
+
+.weui-tabs-bar__content {
+    width: 100%;
+    white-space: nowrap;
+}
+
+.weui-tabs-bar__item {
+    display: inline-block
+}
+
+.weui-tabs-bar__title {
+    display: inline-block;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: transparent
+}
+
+.weui-tabs-bar__content,
+.weui-tabs-bar__title,
+.tab-class {
+    color: #fff;
+    background-color: #13b2ae;
+}
+.tab-bar-title__selected {
+    color: yellow;
+    border-bottom-color: yellow;
+}
+
+@media(prefers-color-scheme:dark) {
+    .weui-tabs-bar__content,
+    .weui-tabs-bar__title,
+    .tab-class,
+    .tab-bar-title__selected {
+        color: gray;
+        background-color: #222;
+    }
+
+    .tab-bar-title__selected {
+        color: #1f7769;
+        border-bottom-color: #1f7769
+    }
+}

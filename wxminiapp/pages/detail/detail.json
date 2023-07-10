@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "navigation-bar": "/components/mynavigationbar/navigation-bar",
+    "mp-tabs":"/components/tabs/index",
+    "mp-cell": "weui-miniprogram/cell/cell"
+  }
+}

@@ -1,0 +1,71 @@
+<navigation-bar includeSearchBar="{{false}}" maintitle="站点信息" showLeftIcon="{{true}}" leftButtonIcon="back2" bind:onNavLeftButtonTap="onBack" bindtap="onSearchBlur"></navigation-bar>
+<view style="position: fixed;margin-top: {{contentTop}}px;height:{{contentHeight}}px;width: 100%; ">
+    <scroll-view scroll-y style="width: 100%;height:{{contentHeight}}px;">
+        <mp-cell value="选择站点" link bindtap="onSiteListSelect">
+            <view slot="footer">{{siteName}}</view>
+        </mp-cell>
+        <mp-cell value="别名" link bindtap="onGotoInput" data-item="{{nameInputParams}}">
+            <view slot="footer">{{named}}</view>
+        </mp-cell>
+        <mp-cell value="填写cookie" link bindtap="gotoGetCookie" data-item="{{cookieInputParams}}">
+            <view wx:if="{{cookie}}" slot="footer">已填写</view>
+        </mp-cell>
+        <mp-cell value="设为默认">
+            <view slot="footer">
+                <switch bindchange="onSwitch" checked="{{isdefault}}"></switch>
+            </view>
+        </mp-cell>
+        <view wx:if="{{support_sign}}">
+            <mp-cell value="自动签到">
+                <view slot="footer">
+                    <switch bindchange="onAutoSignToggle" checked="{{isAutoSign}}"></switch>
+                </view>
+            </mp-cell>
+            <!-- <mp-cell style="color: gray;" wx:if="{{isAutoSign}}" value="-站点账号" link bindtap="onGotoInput" data-item="{{siteidInputParams}}">
+        <view slot="footer">{{siteid}}</view>
+    </mp-cell> -->
+
+            <picker mode="time" value="{{signTime}}" bindchange="bindTimeChange" start="00:00" end="24:00">
+                <mp-cell style="color: gray;" wx:if="{{isAutoSign}}" value="-签到时间" link>
+                    <view slot="footer">每天{{signTime}}左右</view>
+                </mp-cell>
+            </picker>
+            <mp-cell style="color: gray;" wx:if="{{isAutoSign}}" value="-上次签到" bindtap="reSign">
+                <view slot="footer">{{lastsigntime}}</view>
+            </mp-cell>
+            <!-- <picker mode="selector" range="{{sign_duration}}" bindchange="bindSignDurationChange" >
+                <mp-cell style="color: gray;" wx:if="{{isAutoSign}}"  value="-持续时长" link>
+                    <view slot="footer">{{sign_duration[sign_duration_index]}}</view>
+                </mp-cell>
+            </picker> -->
+            <mp-cell style="color: gray;" wx:if="{{isAutoSign}}" value="-有效期至" bindtap="viewAutoSignPay">
+                <view slot="footer" style="color: red;">{{autoSignEndTime}}</view>
+            </mp-cell>
+        </view>
+        <view style="width: 100%;padding:10px;font-size: 12px;color: gray;">需添加更多支持站点请联系作者</view>
+        <view style="height: 15px;"></view>
+        <button class="weui-btn" bindtap="saveSiteConfig">保存</button>
+        <view style="height:200px;"></view>
+        <!-- <image style="width: 150px;height: 40px;" src="{{testimgsrc}}"></image>
+    <input style="width: 150px;height: 40px;background-color: white;" bindinput="onCodeInput"/>
+    <button class="weui-btn" bindtap="getimagesrc">获取</button>
+    <button class="weui-btn" bindtap="testlogin">测试</button> -->
+    </scroll-view>
+</view>
+<ad style="position: fixed;bottom: 0;" unit-id="adunit-ed2582a27223da30" ad-intervals="30"></ad>
+<mypopup show="{{showListSelect}}" bind:onPopupComfirmTap="onSelectComfirm">
+    <scroll-view scroll-y style="width: 100%;height:100%;" enable-back-to-top="{{true}}">
+        <radio-group bindchange="onRadioChange">
+            <label class="weui-cell weui-check__label" wx:for="{{supportsitesResult}}" wx:key="id" data-item="{{item}}">
+                <view class="weui-cell__hd">
+                    <radio value="{{item.name}}" checked="{{item.checked}}" />
+                </view>
+                <view class="weui-cell__bd">
+                    <view class="radio_group_title">{{item.name}}</view>
+                    <view class="radio_group_subtitle">{{item.host}}</view>
+                </view>
+            </label>
+        </radio-group>
+        <view style="padding-bottom: 20vw;height: 15px;"></view>
+    </scroll-view>
+</mypopup>

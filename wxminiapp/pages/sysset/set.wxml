@@ -1,0 +1,31 @@
+<!--pages/sysset/set.wxml-->
+<navigation-bar naviBarType="normal" showLeftIcon="true" leftButtonIcon="back2" maintitle="设置" bind:onNavLeftButtonTap="onNaviBack"></navigation-bar>
+<view style="position: fixed;margin-top: {{contentTop}}px;width: 100%;height: {{contentHeight}}px;">
+    <scroll-view scroll-y="true" style="height:{{contentHeight}}px;" enable-back-to-top="{{true}}" scroll-with-animation="{{true}}">
+        <mp-cell link hover value="打开时默认进入" bindtap="onSelectInto">
+            <view slot="footer">
+                <view slot="footer">{{selectIntoValue}}</view>
+            </view>
+        </mp-cell>
+        <mp-cell link hover value="速率样式" bindtap="onSelectViewType">
+            <view slot="footer">
+                <view slot="footer">{{selectSpeedViewType}}</view>
+            </view>
+        </mp-cell>
+        <mp-cell value="速率曲线平滑">
+            <view slot="footer">
+                <switch color="{{switch_color}}" bindchange="onChangeSmoothSwitch" checked="{{echartsSmooth}}"></switch>
+            </view>
+        </mp-cell>
+        <mp-cell value="标题栏显示传输速率">
+            <view slot="footer">
+                <switch color="{{switch_color}}" bindchange="onSpeedOnTitleSwitch" checked="{{showSpeedOnTitle}}"></switch>
+            </view>
+        </mp-cell>
+        <mp-cell link hover value="数据刷新频率(远程)" bindtap="onChangeUpdateSpeed">
+            <view slot="footer">
+                <view slot="footer">{{updateSpeed}}秒</view>
+            </view>
+        </mp-cell>
+    </scroll-view>
+</view>

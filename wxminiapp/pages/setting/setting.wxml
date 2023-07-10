@@ -1,0 +1,25 @@
+<!--pages/qblogin/qblogin.wxml-->
+<view class="page">
+    <navigation-bar naviBarType="normal" showLeftIcon="true" leftButtonIcon="back2" maintitle="{{navtitle}}" bind:onNavLeftButtonTap="onBack"></navigation-bar>
+    <scroll-view scroll-y style="width: 100%; height: {{contentHeight}}px;margin-top: {{contentTop}}px;" refresher-enabled="{{true}}" refresher-threshold="{{300}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="onRefresh" enable-back-to-top="{{true}}" scroll-with-animation="{{true}}">
+        <view wx:for="{{itemList}}" wx:key="id" wx:if="{{item.show}}">
+            <block wx:if="{{item.switch}}">
+                <mp-cell value="{{item.name}}">
+                    <view slot="footer">
+                        <switch color="{{switch_color}}" bindchange="onSwitch" data-item="{{item.key}}" checked="{{item.value}}"></switch>
+                    </view>
+                </mp-cell>
+            </block>
+            <block wx:else>
+                <mp-cell link="{{!item.switch}}" bindtap="onCellTap" data-item="{{item}}" value="{{item.name}}">
+                    <view slot="footer" style="{{item.button?'display: none;':''}}">{{item.value}}</view>
+                </mp-cell>
+            </block>
+        </view>
+        <mp-cell bindtap="viewSysLog" wx:if="{{supportlogview}}" link value="查看日志"></mp-cell>
+        <mp-cell bindtap="viewPeerLog" wx:if="{{supportlogview}}" link value="PEER记录"></mp-cell>
+        <mp-cell link value="编辑客户端" bindtap="editClientConfig"></mp-cell>
+        <mp-cell value="移除客户端" bindtap="removeClient" class="warnming_cell"></mp-cell>
+        <view style="height: 55px;"></view>
+    </scroll-view>
+</view>

@@ -1,0 +1,11 @@
+<view wx:if="{{show}}" style="width: 100%;height: 100%;">
+    <view class="popup_view_mask" bindtap="onHidePopupTap"></view>
+    <view class="popup_content" animation="{{animationData}}">
+        <view class="popup_top">
+            <view class="popup_top_cancel" bindtap="onCancelTap">{{popupCancelText}}</view>
+            <view class="popup_top_title">{{popupTitle}}</view>
+            <view class="popup_top_confirm" bindtap="onComfirmTap">{{popupComfirmText}}</view>
+        </view>
+        <slot></slot>
+    </view>
+</view>

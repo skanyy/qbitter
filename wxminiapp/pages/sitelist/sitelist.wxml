@@ -1,0 +1,36 @@
+<!-- <mp-toptips ext-class="^toptips-modyfi" msg="{{refreashInfo}}" type="success" show="{{refreashInfo}}"></mp-toptips> -->
+<navigation-bar includeSearchBar="{{false}}" maintitle="站点管理" showLeftIcon="{{true}}" leftButtonIcon="add2" bind:onNavLeftButtonTap="onAddSiteConfig" bindtap="onSearchBlur"></navigation-bar>
+<view style="position: fixed;margin-top: {{contentTop}}px;height:{{contentHeight}}px;width: 100%; ">
+    <view class="search_input_container" id="searchView" bindtap="gotoSearch">
+        <icon style="position:absolute;padding:6px 2px 2px 6px;" size="20" type="search" role="img"></icon>
+        <input placeholder="找资源 | ↓下拉刷新站点数据" class="search_input" disabled="true" />
+    </view>
+    <scroll-view scroll-y style="width: 100%;height:{{contentHeight}}px;" refresher-default-style="{{refresher_style}}" refresher-enabled="{{true}}" refresher-threshold="{{300}}" refresher-triggered="{{triggered}}" bindrefresherrefresh="onRefresh" enable-back-to-top="{{true}}" scroll-with-animation="{{true}}">
+        <block wx:if="{{list.length}}">
+            <view wx:for="{{list}}" wx:key="filter">
+                <view class="weui-panel" bindtap="onEditConfig" bindlongpress="onShowAction" data-item="{{item}}">
+                    <view class="weui-panel__bd">
+                        <view class="weui-media-box weui-media-box_text">
+                            <!-- 标题 -->
+                            <view class="panel_main_title client_list_title">{{item['named']}}({{item['name']}})</view>
+                            <!-- 副标题 -->
+                            <view class="site_list_item_data">{{item['data']}}</view>
+                            <!-- 地址 -->
+                            <view class="weui-media-box__info">
+                                <view class="weui-media-box__info__meta" wx:if="{{item['autosign']}}">
+                                    <image style="width: 16px;height:16px;" src="../../icons/sign.svg"></image>
+                                </view>
+                                <view class="weui-media-box__info__meta">{{item['host']}}</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view style="height: 200px;"></view>
+        </block>
+        <block wx:else>
+            <view class="empty_content" style="height: {{contentHeight}}px;" bindtap="onAddSiteConfig">+点我添加站点配置</view>
+        </block>
+    </scroll-view>
+    <!-- <view class="site_add_button" bindtap="onAddSiteConfig" wx:if="{{showBottomAddButton}}">+添加</view> -->
+</view>

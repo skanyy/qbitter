@@ -1,0 +1,391 @@
+/**app.wxss**/
+/* 通用样式文件，其他页面样式会读取该配置 */
+.content_view {
+    padding: 15px;
+}
+
+.client_list_title{
+    font-weight:600;
+}
+
+.clients_right_view {
+    width: 20%;
+    min-width: 40px;
+    max-width: 80px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgb(240, 240, 240);
+}
+
+.empty_content {
+    width: 100%;
+    text-align: center;
+    padding-top: 30%;
+    color: gray;
+    background-color: #eee;
+}
+
+.inputDescView {
+    color: gray;
+    white-space: pre-wrap;
+    word-break: break-all
+}
+
+.load_more_view {
+    color: #13b2ae;
+    width: 100%;
+    height: 35px;
+    text-align: center;
+    padding: 5px 0px;
+}
+.main_trans_info{
+    margin-bottom: 6px;
+}
+.main_controll_bar {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    /* height: 70px; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* padding-bottom: 15px; */
+    background-color: white;
+    border-top: 1px solid lightgray;
+}
+
+.main_controll_bar_Icon {
+    height: 30px;
+    width: 30px;
+}
+
+.main_controll_bar_label {
+    position: relative;
+    font-size: 10px;
+    top: -5px;
+    color: #555;
+}
+
+
+.my_input_item {
+    margin: 15px 25px 30px 15px;
+}
+
+.panel_main_title,
+.weui-cell__bd {
+    /* 只对中文起作用，强制换行 */
+    white-space: pre-wrap;
+    /* 只对英文起作用，以字母作为依据，强制换行 */
+    word-break: break-all;
+    font-size: 15px;
+}
+
+switch {
+    color: #13b2ae;
+}
+
+scroll-view {
+    background-color: rgb(240, 240, 240);
+}
+
+.tab-class {
+    padding: 10px;
+}
+
+.tab-bar-title__selected {
+    font-size: 18px;
+    color: #13b2ae;
+}
+
+/* input, */
+.weui-textarea,
+.weui-input {
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #999;
+}
+
+.weui-btn {
+    background-color: #13b2ae;
+}
+
+.weui-check__label {
+    border-bottom: 1px solid lightgray;
+}
+
+.weui-cell {
+    background-color: white;
+    border-bottom: solid 1px rgb(240, 240, 240);
+}
+
+.weui-media-box__desc {
+    color: gray;
+    font-size: 11pt;
+}
+
+.weui-media-box__info {
+    color: gray;
+    margin-top: 10px;
+}
+
+.weui-check__label {
+    background-color: white;
+}
+
+.wo_topview {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #13b2ae;
+}
+
+.warnming_cell {
+    color: red
+}
+
+.search_input_container {
+    padding: 5px 15px;
+    background-color: white;
+}
+
+.search_input {
+    height: 32px;
+    padding-left: 26px;
+    border-radius: 15px;
+    background-color: #eee;
+    color: black;
+}
+
+.my_tag_view {
+    font-size: 11px;
+    background-color: #13b2ae;
+    color: white;
+    border-radius: 5px;
+    padding: 0px 2px;
+    margin-right: 5px;
+}
+
+.site_search_tip_list{
+    border-bottom: 1px solid #ccc;
+}
+
+.site_search_tip_view {
+    background-color: white;
+}
+
+.site_search_tip_item {
+    height: 45px;
+    line-height: 45px;
+    padding-left: 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 12px;
+}
+
+.my_hot_a {
+    color: #cc0000;
+}
+
+.site_list_item_meta_complete {
+    color: #328732
+}
+
+.site_list_item_data{
+    color:gray;
+    font-size: 13px;
+}
+
+.site_item_seeder,
+.my_promotion_a {
+    color: #13b2ae;
+}
+
+.site_list_item_subtitle {
+    font-size: 13px;
+    color: #333;
+}
+.site_add_button {
+    width: 100%;
+    height: 65px;
+    padding-top: 12px;
+    vertical-align: middle;
+    background-color: #13b2ae;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    color: white;
+}
+.radio_group_title,
+.radio_group_subtitle {
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.radio_group_subtitle{
+    color: rgb(155, 155, 155);
+}
+.calendar_container{
+    padding: 10px;
+}
+.signlog_view{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 25px;
+    border: solid 1px #ddd;
+    text-align: center;
+    border-radius: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* 黑色模式 */
+
+@media(prefers-color-scheme:dark) {
+    .clients_right_view {
+        background-color: #151515;
+        border-bottom: 1px solid #222;
+    }
+
+    .client_detail_view {
+        background-color: #222;
+    }
+
+    .footer {
+        color: rgb(155, 155, 155);
+    }
+
+    .empty_content,
+    scroll-view {
+        background-color: #111;
+    }
+
+    modal {
+        color: gray;
+        background-color: #222;
+    }
+
+    progress {
+        color: gray;
+    }
+
+    .signlog_view,
+    input,
+    .weui-textarea,
+    .weui-input {
+        color: #777;
+        border: 1px solid rgb(61, 61, 61);
+    }
+
+    .weui-btn {
+        color: lightgray;
+        background-color: #1f7769;
+    }
+
+    .weui-cell,
+    .weui-check__label,
+    .weui-cell__hd {
+        border-bottom: solid 1px #222;
+    }
+
+    mp-cell,
+    rich-text,
+    .weui-media-box__desc,
+    .weui-cell__ft,
+    .weui-cell__ft_in-access::after,
+    .weui-cell__bd {
+        color: #777;
+    }
+
+    .weui-cell,
+    .weui-panel,
+    .weui-panel__bd {
+        background-color: #151515;
+    }
+
+    .site_search_tip_item,
+    .weui-media-box {
+        border-bottom: 1px solid #222;
+    }
+
+    .weui-media-box__info {
+        color: #555;
+    }
+
+    .panel_main_title {
+        color: #999;
+    }
+
+    .weui-media-box__info__meta_extra {
+        border-left: 1px solid #555;
+    }
+
+    switch,
+    .tab-bar-title__selected,
+    .weui-tabs-bar__title,
+    .tab-class,
+    .tab-bar-title__selected,
+    .load_more_view {
+        color: #1f7769;
+    }
+
+    .site_add_button,
+    .main_controll_bar,
+    .wo_topview {
+        background-color: #222;
+    }
+
+    .warnming_cell {
+        color: rgb(148, 26, 26)
+    }
+
+    .main_controll_bar {
+        border-top: 1px solid #222;
+    }
+
+    .main_controll_bar_label {
+        color: #999;
+    }
+
+    .site_search_tip_list{
+        border-bottom: 1px solid #222;
+    }
+
+    .site_search_tip_view,
+    .search_input_container,
+    .search_input {
+        background-color: #151515;
+        color: #999;
+    }
+
+    .my_tag_view {
+        color: #999;
+        background-color: #1f7769;
+    }
+
+    .my_hot_a {
+        color: #dd0000;
+    }
+
+    .site_item_seeder,
+    .my_promotion_a {
+        color: #1f7769;
+    }
+
+    .speedview,
+    .use_view,
+    .transInfoView{
+        border-top: 1px solid #151515;
+        background-color: #111;
+    }
+
+    .my_checkbox_title {
+        color: lightgrey;
+    }
+    .radio_group_subtitle,
+    .site_list_item_subtitle {
+        color: #555;
+    }
+
+}

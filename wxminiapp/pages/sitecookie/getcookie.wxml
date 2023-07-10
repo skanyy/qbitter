@@ -1,0 +1,16 @@
+<navigation-bar includeSearchBar="{{false}}" maintitle="{{siteName}}" showLeftIcon="{{true}}" leftButtonIcon="back2" bind:onNavLeftButtonTap="onBack" bindtap="onSearchBlur"></navigation-bar>
+<scroll-view scroll-y style="width: 100%; height: {{contentHeight}}px;margin-top: {{contentTop}}px;">
+    <view class="my_input_item">
+        <view>用户名</view>
+        <input class="weui-input" bindinput="onUserNameInput" />
+        <view>密码</view>
+        <input class="weui-input" password="true" bindinput="onPassWordInput" />
+        <view wx:if="{{needcode}}">
+            <view>验证码(点击可刷新)</view>
+            <image style="width: 150px;height: 40px;" src="{{codeimgsrc}}" bindtap="getPageInfo"></image>
+            <input class="weui-input" bindinput="onImageCodeInput" />
+        </view>
+        <view style="color: red;">{{trysay}}</view>
+        <button class="weui-btn" bindtap="getSiteCookie" style="margin-top: 45px;">尝试获取</button>
+    </view>
+</scroll-view>>

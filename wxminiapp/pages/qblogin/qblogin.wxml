@@ -1,0 +1,29 @@
+<!--pages/qblogin/qblogin.wxml-->
+<navigation-bar naviBarType="normal" maintitle="{{navtitle}}" showLeftIcon="true" leftButtonIcon="back2" bind:onNavLeftButtonTap="onBack"></navigation-bar>
+<view style="position: fixed;margin-top: {{contentTop}}px;height:{{contentHeight}}px;width: 100%; ">
+    <scroll-view scroll-y style="width: 100%;height:{{contentHeight}}px;">
+        <view wx:for="{{itemList}}" wx:key="id">
+            <block wx:if="{{item.switch}}">
+                <mp-cell value="{{item.name}}">
+                    <view slot="footer">
+                        <switch color="{{switch_color}}" bindchange="onSwitch" id="{{item.key}}" checked="{{item.value}}"></switch>
+                    </view>
+                </mp-cell>
+            </block>
+            <block wx:elif="{{item.select}}">
+                <mp-cell hover link="{{!item.switch}}" bindtap="onSelectTap" data-item="{{item}}" value="{{item.name}}">
+                    <view slot="footer">{{item.value}}</view>
+                </mp-cell>
+            </block>
+            <block wx:else>
+                <mp-cell hover link="{{!item.switch}}" bindtap="onCellTap" data-item="{{item}}" value="{{item.name}}">
+                    <view slot="footer">{{item.value&&item.key=="password"?"已填写":item.value}}</view>
+                </mp-cell>
+            </block>
+        </view>
+        <view style="height: 25px;"></view>
+        <button class="weui-btn" bindtap="sumbitConfig">保存</button>
+        <view style="height:200px;"></view>
+    </scroll-view>
+</view>
+<ad style="position: fixed;bottom: 0;" unit-id="adunit-57f0f9ad30262429" ad-intervals="30"></ad>

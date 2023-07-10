@@ -1,0 +1,10 @@
+/* pages/main.wxss */
+.main_trans_info{
+    font-size: 12px;
+    margin-top: 0px;
+    padding-bottom: 0px;
+}
+.main_state_icon{
+    width: 12px;
+    height: 12px;
+}

@@ -1,0 +1,14 @@
+/* pages/clientlist/clients.wxss */
+.client_state_icon {
+    width: 15px;
+    height: 15px;
+}
+.left_view {
+    /* 左边适应，右边固定 */
+    flex: 1;
+}
+
+.right_icon{
+    width: 25px;
+    height: 25px;
+}

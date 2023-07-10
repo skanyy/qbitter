@@ -1,0 +1,18 @@
+/* pages/detail/detail.wxss */
+.top_return_view{
+    padding: 0px;
+}
+.bottom_info_view{
+    padding:0px 15px 2px 15px;
+    margin-bottom: 10px;
+}
+
+.weui-cell__icon{
+    padding:8px 20px 0px 0px;
+    width: 25px;
+    height: 25px;
+}
+.weui-cell__hd{
+    border-bottom: none;
+}
+

@@ -1,0 +1,19 @@
+/* pages/tags/tags.wxss */
+.topTitle {
+    white-space: pre-wrap;
+    word-break: break-all;
+    padding: 15px;
+    border-bottom: 1px solid lightgray;
+    background-color: white;
+}
+
+.btn-area {
+    margin: 15px;
+}
+
+@media(prefers-color-scheme:dark){
+    .topTitle {
+        border-bottom: 1px solid gray;
+        background-color: #303030;
+    }
+}

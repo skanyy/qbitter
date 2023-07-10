@@ -1,0 +1,23 @@
+<!--pages/setting/setting.wxml-->
+<view class="page">
+    <view class="wo_topview" style="height:{{contentTop}}px;">
+        <view class="userInfo">
+            <image class="userinfo-avatar" src="{{user_avatar_src}}" bindtap="OnUserInfoTap"></image>
+            <view class="user-text">
+                <view class="userinfo-username">{{usernick}}</view>
+                <view class="userinfo-tip" bindtap="OnUserSignLog">{{userinfotip}}</view>
+            </view>
+        </view>
+    </view>
+    <scroll-view scroll-y style="width: 100%; height: {{contentHeight}}px;margin-top: {{contentTop}}px;" enable-back-to-top="{{true}}" scroll-with-animation="{{true}}">
+        <mp-cell bindtap="gotoSysSet" link class="weui-media-box__title">设置<view class="weui-media-box__info">默认选项、速率曲线样式、刷新</view>
+        </mp-cell>
+        <mp-cell bindtap="syncConfig" link class="weui-media-box__title">备份配置<view class="weui-media-box__info">将加密的配置通过服务器进行备份或还原</view>
+        </mp-cell>
+        <mp-cell bindtap="gotoHelp" link class="weui-media-box__title">使用帮助<view class="weui-media-box__info">如何使用</view>
+        </mp-cell>
+        <mp-cell bindtap="gotoAbout" link class="weui-media-box__title">关于<view class="weui-media-box__info">关于Qbiter</view>
+        </mp-cell>
+        <!-- <view class="weui-media-box__info" bindtap="closeAd" bindlongpress="onPersonalInfo" style="padding-left: 15px;">免广告：{{close_ad_detail}}</view> -->
+    </scroll-view>
+</view>

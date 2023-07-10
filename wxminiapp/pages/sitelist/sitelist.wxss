@@ -1,0 +1,8 @@
+/* pages/sitelist/sitelist.wxss */
+.toptips-modyfi {
+    margin-top: 80px;
+    background-color: green;
+}
+.toptips--weui-toptips_info {
+    background-color:green;
+}
